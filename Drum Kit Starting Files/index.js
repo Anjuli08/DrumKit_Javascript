@@ -9,6 +9,7 @@ for (var i = 0; i < document.querySelectorAll(".drum").length; i++) {
         // this.style.color = "white";
         var buttonInnerHTML = this.innerHTML;
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
         //if press button w eg. on screen the make sound
 
         // switch (buttonInnerHTML) {
@@ -55,6 +56,7 @@ document.addEventListener("keydown", function(event) {
     //event allows us to see what triggered this function
     // alert("key was pressed");
     makeSound(event.key);
+    buttonAnimation(event.key);
     //if press eg. w on keyboard the go to the event of key w
 });
 
@@ -94,4 +96,13 @@ function makeSound(key) {
             console.log(buttonInnerHTML);
             break;
     }
+}
+
+function buttonAnimation(currentkey) {
+    var activeButton = document.querySelector("." + currentkey);
+    activeButton.classList.add("pressed"); //to add css element to class 
+    //here it will put changes of pressed from style.css but it won't come back
+    setTimeout(function() {
+        activeButton.classList.remove("pressed")
+    }, 100);
 }
